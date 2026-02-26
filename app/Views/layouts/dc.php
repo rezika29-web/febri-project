@@ -38,6 +38,7 @@ $roleLabel = $roleLabelMap[$normalizedRole] ?? strtoupper($normalizedRole);
                 <a class="dc-nav-link" href="<?= site_url('dc?status=draft') ?>">Draft Saya</a>
                 <a class="dc-nav-link" href="<?= site_url('dc?status=revision_requested') ?>">Perlu Revisi</a>
                 <a class="dc-nav-link" href="<?= site_url('admin/users') ?>">Kelola User</a>
+                <a class="dc-nav-link" href="<?= site_url('admin/companies') ?>">Kelola Perusahaan</a>
             <?php endif; ?>
             <?php if ($normalizedRole === 'pc'): ?>
                 <a class="dc-nav-link" href="<?= site_url('dc?status=submitted') ?>">Priview</a>

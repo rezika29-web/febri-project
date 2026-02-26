@@ -38,4 +38,10 @@ $routes->group('admin', function ($routes) {
     $routes->post('users/(:num)/delete', 'Admin\\Users::delete/$1');
     $routes->post('users/(:num)/reset-password', 'Admin\\Users::resetPassword/$1');
     $routes->get('logs', 'Admin\\Users::logs');
+    $routes->get('companies', 'Admin\\Companies::index');
+    $routes->get('companies/create', 'Admin\\Companies::create');
+    $routes->post('companies/store', 'Admin\\Companies::store');
+    $routes->get('companies/(:num)/edit', 'Admin\\Companies::edit/$1');
+    $routes->post('companies/(:num)/update', 'Admin\\Companies::update/$1');
+    $routes->post('companies/(:num)/delete', 'Admin\\Companies::delete/$1');
 });
