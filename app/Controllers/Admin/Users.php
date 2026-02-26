@@ -37,7 +37,7 @@ class Users extends BaseController
             'currentUser' => $currentUser,
             'users'       => $list,
             'manageableUserIds' => $manageableUserIds,
-            'canCreateUser' => $this->isAdmin($currentUser) || $this->isPc($currentUser),
+            'canCreateUser' => $this->isAdmin($currentUser) || $this->isPc($currentUser) || $this->isConstruction($currentUser),
         ]);
     }
 
@@ -189,7 +189,7 @@ class Users extends BaseController
             exit;
         }
 
-        if (!in_array($this->normalizeRole((string) $user['role']), ['admin', 'pc'], true)) {
+        if (!in_array($this->normalizeRole((string) $user['role']), ['admin', 'pc', 'construction'], true)) {
             redirect()->to(site_url('dc'))->send();
             exit;
         }
@@ -231,9 +231,13 @@ class Users extends BaseController
 
     private function isAdmin(array $user): bool
     {
-        return $this->normalizeRole((string) $user['role']) === 'admin';
+        $role = $this->normalizeRole((string) $user['role']);
+        return in_array($role, ['admin', 'construction'], true);
     }
-
+    private function isConstruction(array $user): bool
+    {
+        return $this->normalizeRole((string) $user['role']) === 'construction';
+    }
     private function isPc(array $user): bool
     {
         return $this->normalizeRole((string) $user['role']) === 'pc';
