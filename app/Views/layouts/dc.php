@@ -34,7 +34,7 @@ $roleLabel = $roleLabelMap[$normalizedRole] ?? strtoupper($normalizedRole);
             <a class="dc-nav-link" href="<?= site_url('dc') ?>">Dashboard</a>
             <a class="dc-nav-link" href="<?= site_url('dc/profile') ?>">Profil Saya</a>
             <?php if ($normalizedRole === 'construction'): ?>
-                <a class="dc-nav-link" href="<?= site_url('dc/create') ?>">Buat QAL</a>
+                <!-- <a class="dc-nav-link" href="<?= site_url('dc/create') ?>">Buat QAL</a> -->
                 <a class="dc-nav-link" href="<?= site_url('dc?status=draft') ?>">Draft Saya</a>
                 <a class="dc-nav-link" href="<?= site_url('dc?status=revision_requested') ?>">Perlu Revisi</a>
                 <a class="dc-nav-link" href="<?= site_url('admin/users') ?>">Kelola User</a>

@@ -46,6 +46,9 @@
                                 <div class="dc-actions">
                                     <a class="btn btn-sm btn-outline-secondary" href="<?= site_url('admin/users/' . $u['id'] . '/edit') ?>">Edit</a>
                                     <button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#reset<?= $u['id'] ?>">Reset PW</button>
+                                    <form action="<?= site_url('admin/users/' . $u['id'] . '/delete') ?>" method="post" onsubmit="return confirm('Hapus User ini?')">
+                                        <button class="btn btn-outline-danger" type="submit">Hapus</button>
+                                    </form>
                                 </div>
                                 <div class="collapse mt-2" id="reset<?= $u['id'] ?>">
                                     <form action="<?= site_url('admin/users/' . $u['id'] . '/reset-password') ?>" method="post" class="d-flex gap-2">

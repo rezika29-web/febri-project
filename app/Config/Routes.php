@@ -35,6 +35,7 @@ $routes->group('admin', function ($routes) {
     $routes->post('users/store', 'Admin\\Users::store');
     $routes->get('users/(:num)/edit', 'Admin\\Users::edit/$1');
     $routes->post('users/(:num)/update', 'Admin\\Users::update/$1');
+    $routes->post('users/(:num)/delete', 'Admin\\Users::delete/$1');
     $routes->post('users/(:num)/reset-password', 'Admin\\Users::resetPassword/$1');
     $routes->get('logs', 'Admin\\Users::logs');
 });
