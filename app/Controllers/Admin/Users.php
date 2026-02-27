@@ -202,10 +202,8 @@ class Users extends BaseController
         if ($this->isAdmin($actor)) {
             return [
                 'construction' => 'Construction',
-                'qc' => 'Quality Control (QC)',
                 'pc' => 'Project Control (PC)',
                 'owner' => 'Owner',
-                'admin' => 'Admin',
             ];
         }
 
