@@ -209,7 +209,7 @@ class Users extends BaseController
 
         return [
             'construction' => 'Construction',
-            'qc' => 'Quality Control (QC)',
+            'pc' => 'Project Control (PC)',
             'owner' => 'Owner',
         ];
     }
@@ -249,5 +249,17 @@ class Users extends BaseController
             'approver' => 'pc',
             default => $role,
         };
+    }
+
+    public function delete(int $id)
+    {
+        $user = $this->users->find($id);
+        if (!$user) {
+            return redirect()->to(site_url('admin/users'))->with('error', 'User tidak ditemukan.');
+        }
+
+        $this->users->delete($id);
+
+        return redirect()->to(site_url('admin/users'))->with('success', 'User berhasil dihapus.');
     }
 }
