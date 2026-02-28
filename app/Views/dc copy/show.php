@@ -23,7 +23,7 @@ $canApprove = $isAdmin || ($isApprover && $document['status'] === 'reviewed');
 $canOwnerApprove = $isAdmin || ($isOwnerApproval && $document['status'] === 'pc_signed');
 
 $jobHint = match ($normalizedRole) {
-    'construction' => 'Tugas Construction: lengkapi dokumen, kirim ke PC, dan revisi bila diminta.',
+    'construction' => 'Tugas Admin: membuat dokumen, kirim ke PC, dan revisi bila diminta.',
     'qc' => 'Tugas QC: review dokumen dan teruskan QAL ke PC.',
     'pc' => 'Tugas PC: tandatangani QAL lalu kirim ke Owner.',
     'owner' => 'Tugas Owner: approval akhir, kemudian dokumen diarsipkan.',
@@ -58,7 +58,7 @@ $jobHint = match ($normalizedRole) {
 
     <div class="row mt-3">
         <div class="col-md-4">
-            <div class="text-muted">Construction</div>
+            <div class="text-muted">Admin</div>
             <div><?= esc($owner['name'] ?? '-') ?></div>
         </div>
         <div class="col-md-4">
@@ -147,7 +147,7 @@ $jobHint = match ($normalizedRole) {
                 </div>
                 <div class="dc-actions">
                     <button class="btn btn-success" type="submit" name="action" value="approve">Teruskan ke PC</button>
-                    <button class="btn btn-outline-danger" type="submit" name="action" value="revision">Minta Revisi ke Construction</button>
+                    <button class="btn btn-outline-danger" type="submit" name="action" value="revision">Minta Revisi ke Admin</button>
                 </div>
             </form>
         </div>

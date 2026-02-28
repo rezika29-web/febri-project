@@ -12,7 +12,7 @@
         'construction' => 'Construction',
         'qc' => 'Quality Control (QC)',
         'pc' => 'Project Control (PC)',
-        'owner' => 'Owner',
+        'owner' => 'User',
         'admin' => 'Admin',
     ];
     ?>

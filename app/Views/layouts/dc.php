@@ -16,10 +16,10 @@ $roleMap = [
 ];
 $normalizedRole = $roleMap[$currentUser['role']] ?? $currentUser['role'];
 $roleLabelMap = [
-    'construction' => 'CONSTRUCTION',
+    'construction' => 'Admin QC',
     'qc' => 'QC',
     'pc' => 'PC',
-    'owner' => 'OWNER',
+    'owner' => 'User',
     'admin' => 'ADMIN',
 ];
 $roleLabel = $roleLabelMap[$normalizedRole] ?? strtoupper($normalizedRole);
@@ -66,7 +66,7 @@ $roleLabel = $roleLabelMap[$normalizedRole] ?? strtoupper($normalizedRole);
         <header class="dc-header">
             <div>
                 <h1 class="dc-title">QAL Document Control</h1>
-                <p class="dc-subtitle">Alur sistem: Construction serahkan dokumen ke PC, PC tanda tangan, Owner approval, lalu diarsipkan.</p>
+                <p class="dc-subtitle">Alur sistem: Admin serahkan dokumen ke PC, PC tanda tangan, Owner approval, lalu diarsipkan.</p>
             </div>
         </header>
 

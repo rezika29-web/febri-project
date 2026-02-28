@@ -136,7 +136,7 @@ $isOwnerSigned = $document['status'] === 'archived';
 
     <table class="mt-8">
         <tr>
-            <th style="width: 25%;" class="text-center">Prepared by (Construction)</th>
+            <th style="width: 25%;" class="text-center">Prepared by (Admin)</th>
             <th style="width: 25%;" class="text-center">Checked and Verified by (QC)</th>
             <th style="width: 25%;" class="text-center">Signed by (PC)</th>
             <th style="width: 25%;" class="text-center">Approved by (Owner)</th>

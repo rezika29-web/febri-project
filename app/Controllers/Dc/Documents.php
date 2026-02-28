@@ -185,7 +185,7 @@ class Documents extends BaseController
     {
         $currentUser = $this->currentUser();
         if (!$this->canCreateQal($currentUser)) {
-            return redirect()->to(site_url('dc'))->with('error', 'Hanya Construction atau Admin yang bisa membuat QAL.');
+            return redirect()->to(site_url('dc'))->with('error', 'Hanya Admin atau Admin yang bisa membuat QAL.');
         }
 
         return view('dc/create', [
@@ -239,7 +239,7 @@ class Documents extends BaseController
     {
         $currentUser = $this->currentUser();
         if (!$this->canCreateQal($currentUser)) {
-            return redirect()->to(site_url('dc'))->with('error', 'Hanya Construction atau Admin yang bisa membuat QAL.');
+            return redirect()->to(site_url('dc'))->with('error', 'Hanya Admin atau Admin yang bisa membuat QAL.');
         }
 
         $data = [
@@ -492,7 +492,7 @@ class Documents extends BaseController
 
         $message = $action === 'approve'
             ? 'QC selesai review. Dokumen diteruskan ke Project Control untuk penandatanganan.'
-            : 'Revisi diminta ke Construction.';
+            : 'Revisi diminta ke Admin.';
         $this->logActivity($currentUser['id'], 'review_qal', ['document_id' => $id, 'action' => $action]);
 
         return redirect()->to(site_url('dc/' . $id))->with('success', $message);

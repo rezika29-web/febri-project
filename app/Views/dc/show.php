@@ -21,7 +21,7 @@ $canReview = $isAdmin || ($isReviewer && $document['status'] === 'submitted');
 $canApprove = $isAdmin || ($isApprover && $document['status'] === 'reviewed');
 
 $jobHint = match ($normalizedRole) {
-    'construction' => 'Tugas Construction: lengkapi dokumen, kirim ke PC, dan revisi bila diminta.',
+    'construction' => 'Tugas Admin: buat dokumen, kirim ke PC, dan revisi bila diminta.',
     'pc' => 'Tugas PC: tandatangani QAL lalu kirim ke Owner.',
     'owner' => 'Tugas Owner: approval akhir, kemudian dokumen diarsipkan',
     default => 'Admin memantau dan mengelola seluruh proses.',
@@ -54,7 +54,7 @@ $jobHint = match ($normalizedRole) {
 
     <div class="row mt-3">
         <div class="col-md-4">
-            <div class="text-muted">Construction</div>
+            <div class="text-muted">Admin</div>
             <div><?= esc($owner['name'] ?? '-') ?></div>
         </div>
         <div class="col-md-4">
@@ -125,7 +125,7 @@ $jobHint = match ($normalizedRole) {
             </div>
             <div class="dc-actions">
                 <button class="btn btn-success" type="submit" name="action" value="approve">Teruskan ke Owner</button>
-                <button class="btn btn-outline-danger" type="submit" name="action" value="revision">Minta Revisi ke Construction</button>
+                <button class="btn btn-outline-danger" type="submit" name="action" value="revision">Minta Revisi ke Admin</button>
             </div>
         </form>
     <?php endif; ?><br />
@@ -136,7 +136,7 @@ $jobHint = match ($normalizedRole) {
                 <textarea class="form-control" rows="3" name="comment"></textarea>
             </div>
             <div class="dc-actions">
-                <button class="btn btn-outline-danger" type="submit" name="action" value="revision">Minta Revisi ke Construction</button>
+                <button class="btn btn-outline-danger" type="submit" name="action" value="revision">Minta Revisi ke Admin</button>
             </div>
         </form>
     <?php endif; ?>

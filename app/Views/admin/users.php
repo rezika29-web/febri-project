@@ -9,10 +9,10 @@
         'approver' => 'pc',
     ];
     $roleLabels = [
-        'construction' => 'Construction',
+        'construction' => 'Admin',
         'qc' => 'Quality Control (QC)',
         'pc' => 'Project Control (PC)',
-        'owner' => 'Owner',
+        'owner' => 'User',
         'admin' => 'Admin',
     ];
     ?>
@@ -36,7 +36,7 @@
             <tbody>
                 <?php foreach ($users as $u): ?>
                     <tr>
-                        <td><?= esc($u['name']) ?></td>
+                        <td><?= esc($u['id']); ?></td>
                         <td><?= esc($u['email']) ?></td>
                         <?php $normalizedRole = $roleMap[$u['role']] ?? $u['role']; ?>
                         <td><?= esc($roleLabels[$normalizedRole] ?? strtoupper($normalizedRole)) ?></td>

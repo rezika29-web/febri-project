@@ -30,6 +30,15 @@
                     <?php endforeach; ?>
                 </select>
             </div>
+            <div class="col-md-6">
+                <label class="form-label">Perusahaan</label>
+                <select class="form-select" name="company_id">
+                    <option value="">- Pilih Perusahaan -</option>
+                    <?php foreach ($comp as $c): ?>
+                        <option value="<?= $c['id'] ?>"  <?= $user['companies_id'] ===  $c['id'] ? 'selected' : '' ?>><?= esc($c['name']) ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
         </div>
         <div class="mt-4 d-flex gap-2">
             <button class="btn btn-success" type="submit">Update</button>

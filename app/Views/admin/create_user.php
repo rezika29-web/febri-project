@@ -22,6 +22,15 @@
                 </select>
             </div>
             <div class="col-md-6">
+                <label class="form-label">Perusahaan</label>
+                <select class="form-select" name="company_id">
+                    <option value="">- Pilih Perusahaan -</option>
+                    <?php foreach ($comp as $c): ?>
+                        <option value="<?= $c['id'] ?>"><?= esc($c['name']) ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="col-md-6">
                 <label class="form-label">Password</label>
                 <input class="form-control" type="text" name="password" required>
             </div>

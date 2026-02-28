@@ -5,16 +5,19 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Models\ActivityLogModel;
 use App\Models\UserModel;
+use App\Models\CompanyModel;
 
 class Users extends BaseController
 {
     protected $helpers = ['form', 'url'];
 
     private UserModel $users;
+    private CompanyModel $company;
 
     public function __construct()
     {
         $this->users = new UserModel();
+        $this->company = new CompanyModel();
     }
 
     public function index()
@@ -47,6 +50,7 @@ class Users extends BaseController
 
         return view('admin/create_user', [
             'currentUser' => $currentUser,
+            'comp'       => $this->company->findAll(),
             'roleOptions' => $this->roleOptionsForActor($currentUser),
         ]);
     }
@@ -70,6 +74,7 @@ class Users extends BaseController
             'name'     => $this->request->getPost('name'),
             'email'    => $email,
             'role'     => $role,
+            'companies_id' => $this->request->getPost('company_id') ?: null,
             'password' => password_hash($this->request->getPost('password'), PASSWORD_BCRYPT),
         ];
 
@@ -93,6 +98,7 @@ class Users extends BaseController
         return view('admin/edit_user', [
             'currentUser' => $currentUser,
             'user'        => $user,
+            'comp'       => $this->company->findAll(),
             'roleOptions' => $this->roleOptionsForActor($currentUser),
         ]);
     }
@@ -123,6 +129,7 @@ class Users extends BaseController
         $data = [
             'name'  => $this->request->getPost('name'),
             'email' => $email,
+            'companies_id' => $this->request->getPost('company_id') ?: null,
             'role'  => $role,
         ];
 
@@ -201,16 +208,16 @@ class Users extends BaseController
     {
         if ($this->isAdmin($actor)) {
             return [
-                'construction' => 'Construction',
+                'construction' => 'Admin',
                 'pc' => 'Project Control (PC)',
-                'owner' => 'Owner',
+                'owner' => 'User',
             ];
         }
 
         return [
-            'construction' => 'Construction',
+            'construction' => 'Admin',
             'pc' => 'Project Control (PC)',
-            'owner' => 'Owner',
+            'owner' => 'User',
         ];
     }
 
@@ -253,7 +260,8 @@ class Users extends BaseController
 
     public function delete(int $id)
     {
-        $user = $this->users->find($id);
+        dd($id);
+        $user = $this->users->find($id); //wait cek dbny
         if (!$user) {
             return redirect()->to(site_url('admin/users'))->with('error', 'User tidak ditemukan.');
         }
@@ -263,3 +271,5 @@ class Users extends BaseController
         return redirect()->to(site_url('admin/users'))->with('success', 'User berhasil dihapus.');
     }
 }
+
+//bisa tu om lah lkok, b a td t?
