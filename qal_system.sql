@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 26 Feb 2026 pada 07.26
--- Versi server: 10.4.32-MariaDB
--- Versi PHP: 8.2.12
+-- Host: localhost
+-- Generation Time: Feb 28, 2026 at 06:21 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `activity_logs`
+-- Table structure for table `activity_logs`
 --
 
 CREATE TABLE `activity_logs` (
@@ -36,7 +36,7 @@ CREATE TABLE `activity_logs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `activity_logs`
+-- Dumping data for table `activity_logs`
 --
 
 INSERT INTO `activity_logs` (`id`, `user_id`, `action`, `context`, `created_at`) VALUES
@@ -291,33 +291,128 @@ INSERT INTO `activity_logs` (`id`, `user_id`, `action`, `context`, `created_at`)
 (249, 1126, 'view_dashboard', '{\"status\":null}', '2026-02-26 06:20:47'),
 (250, 1126, 'view_dashboard', '{\"status\":\"reviewed\"}', '2026-02-26 06:20:49'),
 (251, 1126, 'owner_approve_qal', '{\"document_id\":4}', '2026-02-26 06:20:55'),
-(252, 1126, 'view_dashboard', '{\"status\":null}', '2026-02-26 06:22:23');
+(252, 1126, 'view_dashboard', '{\"status\":null}', '2026-02-26 06:22:23'),
+(253, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 10:45:54'),
+(254, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 10:45:59'),
+(255, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 10:46:21'),
+(256, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 10:46:47'),
+(257, 123, 'view_dashboard', '{\"status\":\"draft\"}', '2026-02-26 10:47:26'),
+(258, 123, 'view_dashboard', '{\"status\":\"revision_requested\"}', '2026-02-26 10:47:30'),
+(259, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 10:47:33'),
+(260, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 10:47:46'),
+(261, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 10:49:32'),
+(262, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 10:49:35'),
+(263, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 10:49:35'),
+(264, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 10:49:35'),
+(265, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 10:49:35'),
+(266, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 10:49:36'),
+(267, 123, 'view_dashboard', '{\"status\":\"draft\"}', '2026-02-26 10:49:42'),
+(268, 123, 'view_dashboard', '{\"status\":\"revision_requested\"}', '2026-02-26 10:49:43'),
+(269, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 10:52:49'),
+(270, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 11:04:14'),
+(271, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 11:04:17'),
+(272, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 11:04:19'),
+(273, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 11:04:20'),
+(274, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 11:08:03'),
+(275, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 11:08:05'),
+(276, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 11:08:07'),
+(277, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 11:09:22'),
+(278, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 11:14:18'),
+(279, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 11:14:21'),
+(280, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 11:14:26'),
+(281, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 11:19:50'),
+(282, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 11:19:53'),
+(283, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 11:19:55'),
+(284, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 11:19:57'),
+(285, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 11:19:59'),
+(286, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 11:20:18'),
+(287, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 11:20:19'),
+(288, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 11:20:22'),
+(289, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 11:20:23'),
+(290, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 11:20:36'),
+(291, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 11:20:37'),
+(292, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 11:20:38'),
+(293, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 11:20:38'),
+(294, 123, 'view_dashboard', '{\"status\":null}', '2026-02-26 11:25:14'),
+(295, 123, 'view_dashboard', '{\"status\":null}', '2026-02-27 02:55:51'),
+(296, 123, 'create_user', '{\"user_id\":1129,\"by_role\":\"construction\"}', '2026-02-27 03:58:35'),
+(297, 123, 'create_user', '{\"user_id\":1130,\"by_role\":\"construction\"}', '2026-02-27 04:01:45'),
+(298, 123, 'create_user', '{\"user_id\":1131,\"by_role\":\"construction\"}', '2026-02-27 04:04:21'),
+(299, 123, 'create_user', '{\"user_id\":1132,\"by_role\":\"construction\"}', '2026-02-27 04:25:53'),
+(300, 123, 'update_user', '{\"user_id\":1132,\"by_role\":\"construction\"}', '2026-02-27 04:26:05'),
+(301, 123, 'update_user', '{\"user_id\":1132,\"by_role\":\"construction\"}', '2026-02-27 04:31:06'),
+(302, 123, 'update_user', '{\"user_id\":1132,\"by_role\":\"construction\"}', '2026-02-27 04:31:52'),
+(303, 123, 'update_user', '{\"user_id\":1132,\"by_role\":\"construction\"}', '2026-02-27 04:32:10'),
+(304, 123, 'create_user', '{\"user_id\":1133,\"by_role\":\"construction\"}', '2026-02-27 04:36:36'),
+(305, 1133, 'view_dashboard', '{\"status\":null}', '2026-02-27 04:40:29'),
+(306, 123, 'view_dashboard', '{\"status\":null}', '2026-02-27 04:49:51'),
+(307, 123, 'view_dashboard', '{\"status\":\"revision_requested\"}', '2026-02-27 04:50:21'),
+(308, 123, 'view_dashboard', '{\"status\":null}', '2026-02-27 04:50:28'),
+(309, 123, 'view_dashboard', '{\"status\":null}', '2026-02-28 04:01:13'),
+(310, 125, 'view_dashboard', '{\"status\":null}', '2026-02-28 04:02:07'),
+(311, 123, 'create_user', '{\"user_id\":1134,\"by_role\":\"construction\"}', '2026-02-28 04:03:39'),
+(312, 1134, 'view_dashboard', '{\"status\":null}', '2026-02-28 04:03:52'),
+(313, 1134, 'view_dashboard', '{\"status\":\"reviewed\"}', '2026-02-28 04:05:14'),
+(314, 123, 'view_dashboard', '{\"status\":null}', '2026-02-28 04:10:44'),
+(315, 123, 'create_qal', '{\"document_id\":7}', '2026-02-28 04:11:54'),
+(316, 1134, 'view_dashboard', '{\"status\":\"reviewed\"}', '2026-02-28 04:12:01'),
+(317, 125, 'view_dashboard', '{\"status\":null}', '2026-02-28 04:12:33'),
+(318, 123, 'view_dashboard', '{\"status\":\"draft\"}', '2026-02-28 04:12:49'),
+(319, 123, 'submit_qal', '{\"document_id\":7}', '2026-02-28 04:12:55'),
+(320, 125, 'view_dashboard', '{\"status\":null}', '2026-02-28 04:13:07'),
+(321, 125, 'view_dashboard', '{\"status\":null}', '2026-02-28 04:13:20'),
+(322, 125, 'view_dashboard', '{\"status\":null}', '2026-02-28 04:13:23'),
+(323, 123, 'create_user', '{\"user_id\":1135,\"by_role\":\"construction\"}', '2026-02-28 04:14:16'),
+(324, 1135, 'view_dashboard', '{\"status\":null}', '2026-02-28 04:14:32'),
+(325, 1135, 'view_dashboard', '{\"status\":\"submitted\"}', '2026-02-28 04:15:57'),
+(326, 1135, 'view_dashboard', '{\"status\":\"reviewed\"}', '2026-02-28 04:15:59'),
+(327, 1135, 'view_dashboard', '{\"status\":\"submitted\"}', '2026-02-28 04:16:01'),
+(328, 1135, 'view_dashboard', '{\"status\":null}', '2026-02-28 04:16:03'),
+(329, 1135, 'review_qal', '{\"document_id\":7,\"action\":\"approve\"}', '2026-02-28 04:16:28'),
+(330, 1134, 'view_dashboard', '{\"status\":null}', '2026-02-28 04:16:46'),
+(331, 1134, 'owner_approve_qal', '{\"document_id\":7}', '2026-02-28 04:17:01'),
+(332, 123, 'view_dashboard', '{\"status\":null}', '2026-02-28 04:17:53'),
+(333, 123, 'create_qal', '{\"document_id\":8}', '2026-02-28 04:18:31'),
+(334, 123, 'submit_qal', '{\"document_id\":8}', '2026-02-28 04:18:33'),
+(335, 1135, 'view_dashboard', '{\"status\":null}', '2026-02-28 04:18:46'),
+(336, 1135, 'view_dashboard', '{\"status\":\"submitted\"}', '2026-02-28 04:18:49'),
+(337, 1135, 'view_dashboard', '{\"status\":\"reviewed\"}', '2026-02-28 04:18:50'),
+(338, 1135, 'view_dashboard', '{\"status\":null}', '2026-02-28 04:18:52'),
+(339, 1135, 'review_qal', '{\"document_id\":8,\"action\":\"approve\"}', '2026-02-28 04:19:02'),
+(340, 1134, 'view_dashboard', '{\"status\":null}', '2026-02-28 04:19:13'),
+(341, 1134, 'review_qal', '{\"document_id\":8,\"action\":\"revision\"}', '2026-02-28 04:19:31'),
+(342, 123, 'view_dashboard', '{\"status\":null}', '2026-02-28 04:19:39'),
+(343, 1135, 'view_dashboard', '{\"status\":null}', '2026-02-28 04:19:53'),
+(344, 123, 'view_dashboard', '{\"status\":\"draft\"}', '2026-02-28 05:07:14'),
+(345, 123, 'view_dashboard', '{\"status\":null}', '2026-02-28 05:07:14'),
+(346, 123, 'view_dashboard', '{\"status\":null}', '2026-02-28 05:07:14'),
+(347, 1134, 'view_dashboard', '{\"status\":null}', '2026-02-28 05:19:37');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `companies`
+-- Table structure for table `companies`
 --
 
 CREATE TABLE `companies` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
+  `name` varchar(255) NOT NULL,
+  `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `companies`
+-- Dumping data for table `companies`
 --
 
-INSERT INTO `companies` (`id`, `name`) VALUES
-(1, 'Perusahaan A'),
-(2, 'Perusahaan B'),
-(3, 'Perusahaan C'),
-(4, 'Perusahaan D');
+INSERT INTO `companies` (`id`, `name`, `deleted_at`) VALUES
+(1, 'Perusahaan A', NULL),
+(2, 'Perusahaan B', NULL),
+(3, 'Perusahaan C', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `documents`
+-- Table structure for table `documents`
 --
 
 CREATE TABLE `documents` (
@@ -341,7 +436,7 @@ CREATE TABLE `documents` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `documents`
+-- Dumping data for table `documents`
 --
 
 INSERT INTO `documents` (`id`, `title`, `doc_number`, `category`, `description`, `status`, `owner_id`, `reviewer_id`, `approver_id`, `owner_approval_id`, `current_version_id`, `locked_at`, `approved_by`, `approved_at`, `created_at`, `updated_at`, `companies_id`) VALUES
@@ -349,12 +444,14 @@ INSERT INTO `documents` (`id`, `title`, `doc_number`, `category`, `description`,
 (2, 'contoh', 'd004', 'hdjkw', 'contoh', 'archived', 123, NULL, NULL, NULL, 2, '2026-02-25 16:04:24', 1126, '2026-02-25 16:04:24', '2026-02-23 09:02:14', '2026-02-25 16:04:24', 1),
 (4, 'QAL Perusahaan A', 'A001', '', 'Document A 001', 'archived', 123, 1125, NULL, NULL, 6, '2026-02-26 06:20:55', 1126, '2026-02-26 06:20:55', '2026-02-25 14:38:22', '2026-02-26 06:20:55', 1),
 (5, 'QAL Perusahaan B', 'B001', NULL, 'document perusahaan B', 'submitted', 123, NULL, NULL, NULL, 7, NULL, NULL, NULL, '2026-02-25 14:40:19', '2026-02-26 04:11:27', 2),
-(6, 'Dokumen Baru Perusahaan A', 'A007', NULL, 'Dokumen Baru cok untuk jalan', 'archived', 123, NULL, NULL, NULL, 9, '2026-02-26 04:09:05', 1126, '2026-02-26 04:09:05', '2026-02-26 04:04:40', '2026-02-26 04:09:05', 1);
+(6, 'Dokumen Baru Perusahaan A', 'A007', NULL, 'Dokumen Baru cok untuk jalan', 'archived', 123, NULL, NULL, NULL, 9, '2026-02-26 04:09:05', 1126, '2026-02-26 04:09:05', '2026-02-26 04:04:40', '2026-02-26 04:09:05', 1),
+(7, 'test pertama', 'D00103', NULL, 'project blabala', 'archived', 123, 1135, NULL, NULL, 12, '2026-02-28 04:17:01', 1134, '2026-02-28 04:17:01', '2026-02-28 04:11:53', '2026-02-28 04:17:01', 3),
+(8, 'Test ke 2', 'D00104', NULL, 'project ke 2 saya', 'revision_requested', 123, 1134, NULL, NULL, 15, NULL, NULL, NULL, '2026-02-28 04:18:31', '2026-02-28 04:19:31', 3);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `document_reviews`
+-- Table structure for table `document_reviews`
 --
 
 CREATE TABLE `document_reviews` (
@@ -367,7 +464,7 @@ CREATE TABLE `document_reviews` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `document_reviews`
+-- Dumping data for table `document_reviews`
 --
 
 INSERT INTO `document_reviews` (`id`, `document_id`, `reviewer_id`, `status`, `comment`, `created_at`) VALUES
@@ -377,12 +474,15 @@ INSERT INTO `document_reviews` (`id`, `document_id`, `reviewer_id`, `status`, `c
 (4, 1, 1126, 'revision_requested', 'revisi dari owner', '2026-02-26 03:17:52'),
 (5, 6, 1125, 'review_approved', 'Lanjutkan om', '2026-02-26 04:08:17'),
 (6, 5, 1125, 'revision_requested', 'revisi dong', '2026-02-26 04:09:45'),
-(7, 4, 1125, 'review_approved', '', '2026-02-26 06:16:33');
+(7, 4, 1125, 'review_approved', '', '2026-02-26 06:16:33'),
+(8, 7, 1135, 'review_approved', 'sudah selesai', '2026-02-28 04:16:28'),
+(9, 8, 1135, 'review_approved', 'selesai dari pc', '2026-02-28 04:19:02'),
+(10, 8, 1134, 'revision_requested', 'salah gambar tolong perbaiki', '2026-02-28 04:19:31');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `document_versions`
+-- Table structure for table `document_versions`
 --
 
 CREATE TABLE `document_versions` (
@@ -397,7 +497,7 @@ CREATE TABLE `document_versions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `document_versions`
+-- Dumping data for table `document_versions`
 --
 
 INSERT INTO `document_versions` (`id`, `document_id`, `revision`, `file_path`, `file_name`, `notes`, `created_by`, `created_at`) VALUES
@@ -407,12 +507,18 @@ INSERT INTO `document_versions` (`id`, `document_id`, `revision`, `file_path`, `
 (6, 4, 2, 'uploads/qal/4/1772030302_b4ece0dad822a4b67fee.jpeg', 'image.jpeg', 'Draft awal', 123, '2026-02-25 14:38:22'),
 (7, 5, 1, 'uploads/qal/5/1772030419_07d3dbf23076a1e84fc2.jpg', 'cc.jpg', 'Draft awal', 123, '2026-02-25 14:40:19'),
 (8, 6, 1, 'uploads/qal/6/1772078680_f5216087016254f11ad1.jpg', 'cc.jpg', 'Draft awal', 123, '2026-02-26 04:04:40'),
-(9, 6, 2, 'uploads/qal/6/1772078680_17adc020dd4f5dcbafc2.jpeg', 'image.jpeg', 'Draft awal', 123, '2026-02-26 04:04:40');
+(9, 6, 2, 'uploads/qal/6/1772078680_17adc020dd4f5dcbafc2.jpeg', 'image.jpeg', 'Draft awal', 123, '2026-02-26 04:04:40'),
+(10, 7, 1, 'uploads/qal/7/1772251914_9526cde6bae477674f88.jpg', '133898910244676027.jpg', 'Draft awal', 123, '2026-02-28 04:11:54'),
+(11, 7, 2, 'uploads/qal/7/1772251914_9b94611cb17ae6854169.jpg', '133913560152117431.jpg', 'Draft awal', 123, '2026-02-28 04:11:54'),
+(12, 7, 3, 'uploads/qal/7/1772251914_c2b6943cbb38e27f8e88.jpg', '133913560841108947.jpg', 'Draft awal', 123, '2026-02-28 04:11:54'),
+(13, 8, 1, 'uploads/qal/8/1772252311_95b52a86c98470144698.jpg', '133995687116932866.jpg', 'Draft awal', 123, '2026-02-28 04:18:31'),
+(14, 8, 2, 'uploads/qal/8/1772252311_96720ea5f1191795d171.jpg', '133995687140812339.jpg', 'Draft awal', 123, '2026-02-28 04:18:31'),
+(15, 8, 3, 'uploads/qal/8/1772252311_c0113c8cd3122c46fd37.jpg', '134074326773063166.jpg', 'Draft awal', 123, '2026-02-28 04:18:31');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -426,7 +532,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`, `batch`) VALUES
@@ -442,7 +548,7 @@ INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -453,42 +559,48 @@ CREATE TABLE `users` (
   `role` varchar(30) NOT NULL DEFAULT 'construction',
   `companies_id` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `companies_id`, `created_at`, `updated_at`) VALUES
-(123, 'admin', 'admin@example.com', '$2y$10$gNne3VQdYLDoml1/hBvm0uFhC2og5iuhLbILxgaUS15Pml16tCj7S', 'construction', 0, NULL, '2026-02-23 08:18:27'),
-(125, 'raysa', 'pc@example.com', '$2y$10$6gDUK431lVXEBou2ojgzQOZIQUq./l2o1pNMSPxlcbJFZ0.VIKp.S', 'Projec Control', NULL, NULL, NULL),
-(126, 'putri', 'user@example.com', '$2y$10$Fuoy7Yx0G3oYR/I5inO4juuKmMgR7j4ZDsEMtabQiDzxKX7i8XweC', 'User', NULL, NULL, NULL),
-(1124, 'febri', 'qc@example.com', '$2y$10$6gDUK431lVXEBou2ojgzQOZIQUq./l2o1pNMSPxlcbJFZ0.VIKp.S', 'Quality control', NULL, NULL, NULL),
-(1125, 'PC 1', 'pc1@gmail.com', '$2y$10$gNne3VQdYLDoml1/hBvm0uFhC2og5iuhLbILxgaUS15Pml16tCj7S', 'pc', NULL, NULL, NULL),
-(1126, 'Owner satu', 'owner1@gmail.com', '$2y$10$gNne3VQdYLDoml1/hBvm0uFhC2og5iuhLbILxgaUS15Pml16tCj7S', 'owner', 1, NULL, '2026-02-26 03:19:21'),
-(1127, 'PC 2', 'pc2@gmail.com', '$2y$10$gNne3VQdYLDoml1/hBvm0uFhC2og5iuhLbILxgaUS15Pml16tCj7S', 'pc', NULL, NULL, NULL),
-(1128, 'Owner 2', 'owner2@gmail.com', '$2y$10$gNne3VQdYLDoml1/hBvm0uFhC2og5iuhLbILxgaUS15Pml16tCj7S', 'owner', 2, NULL, NULL);
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `companies_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(123, 'admin', 'admin@example.com', '$2y$10$gNne3VQdYLDoml1/hBvm0uFhC2og5iuhLbILxgaUS15Pml16tCj7S', 'construction', 0, '2026-02-27 04:01:45', '2026-02-23 08:18:27', NULL),
+(125, 'raysa', 'pc@example.com', '$2y$10$6gDUK431lVXEBou2ojgzQOZIQUq./l2o1pNMSPxlcbJFZ0.VIKp.S', 'Projec Control', NULL, '2026-02-27 04:01:45', '2026-02-28 04:15:27', '2026-02-28 04:15:27'),
+(126, 'putri', 'user@example.com', '$2y$10$Fuoy7Yx0G3oYR/I5inO4juuKmMgR7j4ZDsEMtabQiDzxKX7i8XweC', 'User', NULL, '2026-02-27 04:01:45', NULL, NULL),
+(1124, 'febri', 'qc@example.com', '$2y$10$6gDUK431lVXEBou2ojgzQOZIQUq./l2o1pNMSPxlcbJFZ0.VIKp.S', 'Quality control', NULL, '2026-02-27 04:01:45', NULL, NULL),
+(1125, 'PC 1', 'pc1@gmail.com', '$2y$10$gNne3VQdYLDoml1/hBvm0uFhC2og5iuhLbILxgaUS15Pml16tCj7S', 'pc', NULL, '2026-02-27 04:01:45', NULL, NULL),
+(1126, 'Owner satu', 'owner1@gmail.com', '$2y$10$gNne3VQdYLDoml1/hBvm0uFhC2og5iuhLbILxgaUS15Pml16tCj7S', 'owner', 1, '2026-02-27 04:01:45', '2026-02-26 03:19:21', NULL),
+(1127, 'PC 2', 'pc2@gmail.com', '$2y$10$gNne3VQdYLDoml1/hBvm0uFhC2og5iuhLbILxgaUS15Pml16tCj7S', 'pc', NULL, '2026-02-27 04:01:45', NULL, NULL),
+(1128, 'Owner 2', 'owner2@gmail.com', '$2y$10$gNne3VQdYLDoml1/hBvm0uFhC2og5iuhLbILxgaUS15Pml16tCj7S', 'owner', 2, '2026-02-27 04:01:45', '2026-02-28 04:10:15', '2026-02-28 04:10:15'),
+(1130, 'tets', 'test@gmail.com', '$2y$10$fi4bo85GhkA4/FbRIT1LlOCJX//vEopsnNlCiDUM/8fQRiOGFNGd6', 'construction', NULL, '2026-02-27 04:01:45', '2026-02-27 04:32:34', '2026-02-27 04:32:34'),
+(1132, 'tests12313', 'tests12313@gmail.com', '$2y$10$AtlKSKxkhHnvvPI6aF/GKeNHHXl3P8yv.Sse7vX1xtl5SHV9bzu.q', 'owner', 2, '2026-02-27 04:25:53', '2026-02-27 04:32:10', NULL),
+(1133, 'rezika', 'rezika@gmail.com', '$2y$10$2gm2y0qROURJQh9RTUt66ufhdECcF2Psa45TCl4eEVeeLml8hcKLG', 'owner', 2, '2026-02-27 04:36:36', '2026-02-28 04:01:20', '2026-02-28 04:01:20'),
+(1134, 'owner123', 'owner123@gmail.com', '$2y$10$abmBWIV5B2hOnIdXdq6Ztejuga7R7rHDEDDDYkJ4RM5BovqIkVqWm', 'owner', 3, '2026-02-28 04:03:39', '2026-02-28 04:03:39', NULL),
+(1135, 'pc123', 'pc123@gmail.com', '$2y$10$F3pFM92dtz4EoPVhd6usnusXgBLzBOxQ/uvSKiu3KuH1i8tkWA/k.', 'pc', NULL, '2026-02-28 04:14:16', '2026-02-28 04:14:16', NULL);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `activity_logs`
+-- Indexes for table `activity_logs`
 --
 ALTER TABLE `activity_logs`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indeks untuk tabel `companies`
+-- Indexes for table `companies`
 --
 ALTER TABLE `companies`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `documents`
+-- Indexes for table `documents`
 --
 ALTER TABLE `documents`
   ADD PRIMARY KEY (`id`),
@@ -501,7 +613,7 @@ ALTER TABLE `documents`
   ADD KEY `documents_owner_approval_id_foreign` (`owner_approval_id`);
 
 --
--- Indeks untuk tabel `document_reviews`
+-- Indexes for table `document_reviews`
 --
 ALTER TABLE `document_reviews`
   ADD PRIMARY KEY (`id`),
@@ -509,7 +621,7 @@ ALTER TABLE `document_reviews`
   ADD KEY `document_id` (`document_id`);
 
 --
--- Indeks untuk tabel `document_versions`
+-- Indexes for table `document_versions`
 --
 ALTER TABLE `document_versions`
   ADD PRIMARY KEY (`id`),
@@ -517,76 +629,76 @@ ALTER TABLE `document_versions`
   ADD KEY `document_id_revision` (`document_id`,`revision`);
 
 --
--- Indeks untuk tabel `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `activity_logs`
+-- AUTO_INCREMENT for table `activity_logs`
 --
 ALTER TABLE `activity_logs`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=253;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=348;
 
 --
--- AUTO_INCREMENT untuk tabel `companies`
+-- AUTO_INCREMENT for table `companies`
 --
 ALTER TABLE `companies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `documents`
+-- AUTO_INCREMENT for table `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `document_reviews`
+-- AUTO_INCREMENT for table `document_reviews`
 --
 ALTER TABLE `document_reviews`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT untuk tabel `document_versions`
+-- AUTO_INCREMENT for table `document_versions`
 --
 ALTER TABLE `document_versions`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT untuk tabel `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1129;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1136;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `activity_logs`
+-- Constraints for table `activity_logs`
 --
 ALTER TABLE `activity_logs`
   ADD CONSTRAINT `activity_logs_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `documents`
+-- Constraints for table `documents`
 --
 ALTER TABLE `documents`
   ADD CONSTRAINT `documents_approved_by_foreign` FOREIGN KEY (`approved_by`) REFERENCES `users` (`id`) ON UPDATE SET NULL,
@@ -596,14 +708,14 @@ ALTER TABLE `documents`
   ADD CONSTRAINT `documents_reviewer_id_foreign` FOREIGN KEY (`reviewer_id`) REFERENCES `users` (`id`) ON UPDATE SET NULL;
 
 --
--- Ketidakleluasaan untuk tabel `document_reviews`
+-- Constraints for table `document_reviews`
 --
 ALTER TABLE `document_reviews`
   ADD CONSTRAINT `document_reviews_document_id_foreign` FOREIGN KEY (`document_id`) REFERENCES `documents` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `document_reviews_reviewer_id_foreign` FOREIGN KEY (`reviewer_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `document_versions`
+-- Constraints for table `document_versions`
 --
 ALTER TABLE `document_versions`
   ADD CONSTRAINT `document_versions_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON UPDATE CASCADE,
