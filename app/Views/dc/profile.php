@@ -1,4 +1,20 @@
 <?= $this->extend('layouts/dc') ?>
+<?php
+$roleMap = [
+    'drafter' => 'construction',
+    'reviewer' => 'qc',
+    'approver' => 'pc',
+];
+$normalizedRole = $roleMap[$currentUser['role']] ?? $currentUser['role'];
+$roleLabelMap = [
+    'construction' => 'Admin QC',
+    'qc' => 'QC',
+    'pc' => 'PC',
+    'owner' => 'User',
+    'admin' => 'ADMIN',
+];
+$roleLabel = $roleLabelMap[$normalizedRole] ?? strtoupper($normalizedRole);
+?>
 
 <?= $this->section('content') ?>
 <div class="dc-card" style="max-width: 760px;">
@@ -15,7 +31,7 @@
             </div>
             <div class="col-md-6">
                 <label class="form-label">Role</label>
-                <input class="form-control" value="<?= esc(strtoupper($currentUser['role'])) ?>" readonly>
+                <input class="form-control" value="<?= $roleLabel ?>" readonly>
             </div>
             <div class="col-md-6">
                 <label class="form-label">Password Baru (opsional)</label>

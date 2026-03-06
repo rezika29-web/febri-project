@@ -49,7 +49,6 @@
 
         td,
         th {
-            border: 1px solid #222;
             padding: 4px 6px;
             vertical-align: top;
         }
@@ -119,14 +118,9 @@
     <h1 class="text-center title">LAPORAN PENDATAAN DOKUMEN QAL<br />KONSORIUM PT.BRA_PT.BKP<br /><br /><?= esc($document['title']) ?></h1>
     <table class="mt-8">
         <tr>
-            <th style="width: 20%;">No QAL</th>
-            <th style="width: 30%;">Tanggal QAL</th>
-            <th style="width: 50%;">Owner</th>
-        </tr>
-        <tr>
-            <td><?= esc($document['doc_number'] ?? '-') ?></td>
-            <td><?= esc($document['created_at'] ?? '-') ?></td>
-            <td><?= esc($approver['name'] ?? '-') ?></td>
+            <th style="width: 20%;">No QAL : <?= esc($document['doc_number'] ?? '-') ?></th>
+            <th style="width: 30%;">Tanggal QAL : <?= esc($document['created_at'] ?? '-') ?></th>
+            <th style="width: 50%;">Owner : <?= esc($approver['name'] ?? '-') ?></th>
         </tr>
     </table>
     <?php foreach ($documentVersions as $v): ?>

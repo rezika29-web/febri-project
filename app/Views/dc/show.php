@@ -43,7 +43,9 @@ $jobHint = match ($normalizedRole) {
             <?php if ($canEdit): ?>
                 <a class="btn btn-outline-secondary" href="<?= site_url('dc/' . $document['id'] . '/edit') ?>">Edit</a>
             <?php endif; ?>
+            <?php if(esc(str_replace('_', ' ', strtoupper($document['status']))) == 'ARCHIVED'): ?>
             <a class="btn btn-outline-dark" href="<?= site_url('dc/' . $document['id'] . '/print') ?>" target="_blank">Print</a>
+            <?php endif; ?>
             <?php if ($canDelete): ?>
                 <form action="<?= site_url('dc/' . $document['id'] . '/delete') ?>" method="post" onsubmit="return confirm('Hapus dokumen ini?')">
                     <button class="btn btn-outline-danger" type="submit">Hapus</button>
@@ -144,27 +146,7 @@ $jobHint = match ($normalizedRole) {
 
 <div class="row g-4">
     <div class="col-lg-6">
-        <div class="dc-card">
-            <h3 class="h6 mb-3">Versi Dokumen</h3>
-            <?php if (empty($versions)): ?>
-                <p class="text-muted">Belum ada file yang diupload.</p>
-            <?php else: ?>
-                <ul class="list-group">
-                    <?php foreach ($versions as $v): ?>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div>
-                                <?php $displayName = $v['file_name'] ?? basename((string) ($v['file_path'] ?? '')); ?>
-                                <div><?= esc($displayName !== '' ? $displayName : ('File #' . $v['id'])) ?></div>
-                                <small class="text-muted">Revision #<?= esc($v['revision']) ?> | <?= esc($v['notes'] ?? '-') ?></small>
-                            </div>
-                            <?php if (!empty($v['file_path'])): ?>
-                                <a class="btn btn-sm btn-outline-primary" href="<?= site_url('dc/version/' . $v['id'] . '/download') ?>">Download</a>
-                            <?php endif; ?>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            <?php endif; ?>
-        </div>
+
     </div>
     <div class="col-lg-6">
         <div class="dc-card">
