@@ -588,7 +588,7 @@ class Documents extends BaseController
                 $this->reviews->insert([
             'document_id' => $id,
             'reviewer_id' => $currentUser['id'],
-            'status'      => 'reviewed',
+            'status'      => 'approved',
             'comment'     => '',
             'created_at'  => date('Y-m-d H:i:s'),
         ]);
