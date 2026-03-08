@@ -7,10 +7,10 @@ $roleMap = [
 ];
 $normalizedRole = $roleMap[$currentUser['role']] ?? $currentUser['role'];
 $roleLabelMap = [
-    'construction' => 'Admin QC',
+    'construction' => 'Construction',
     'qc' => 'QC',
     'pc' => 'PC',
-    'owner' => 'User',
+    'owner' => 'Owner',
     'admin' => 'ADMIN',
 ];
 $roleLabel = $roleLabelMap[$normalizedRole] ?? strtoupper($normalizedRole);

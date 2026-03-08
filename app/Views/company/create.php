@@ -15,7 +15,7 @@
             </div>
             <div class="col-md-6">
                 <label class="form-label">Nomor HP</label>
-                <input class="form-control" name="nohp" required>
+                <input class="form-control" name="no_hp" required>
             </div>
             <div class="mt-4 d-flex gap-2">
                 <button class="btn btn-success" type="submit">Simpan</button>

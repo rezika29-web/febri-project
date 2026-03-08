@@ -36,13 +36,13 @@ class Documents extends BaseController
         $statusFilter = $this->request->getGet('status');
 
         $query = $this->documents
-            ->select('documents.*, u.name as owner_name, c.name as company_name, r.name as reviewer_name, a.name as approver_name, oa.name as owner_approval_name')
+            ->select('documents.*, u.name as owner_name, r.name as reviewer_name, a.name as approver_name, oa.name as owner_approval_name')
             ->join('users u', 'u.id = documents.owner_id')
-            ->join('companies c', 'c.id = documents.companies_id', 'left')
             ->join('users r', 'r.id = documents.reviewer_id', 'left')
             ->join('users a', 'a.id = documents.approver_id', 'left')
             ->join('users oa', 'oa.id = documents.owner_approval_id', 'left')
             ->orderBy('documents.created_at', 'DESC');
+        // ->join('companies c', 'c.id = documents.companies_id', 'left')
 
         // if ($this->hasRole($currentUser, 'construction')) {
         //     $query->where('documents.owner_id', $currentUser['id']);
@@ -53,13 +53,13 @@ class Documents extends BaseController
         // } elseif ($this->hasRole($currentUser, 'owner')) {
         //     $query->where('documents.owner_approval_id', $currentUser['id']);
         // }
-        if ($this->hasRole($currentUser, 'owner')) {
-            $query->where('documents.companies_id', $currentUser['companies_id']);
-        }
+        // if ($this->hasRole($currentUser, 'owner')) {
+        //     $query->where('documents.companies_id', $currentUser['companies_id']);
+        // }
         // if ($this->hasRole($currentUser, 'pc')) {
         //     $query->where('documents.status', 'submitted');
         // }
-        
+
         // if ($this->hasRole($currentUser, 'owner')) {
         //     $query->where('documents.status', 'reviewed');
         // }
@@ -178,7 +178,38 @@ class Documents extends BaseController
             'ownerApproval' => $ownerApproval,
             'versions'    => $versions,
             'documentVersions' => $query->findAll(),
-            ]);
+        ]);
+    }
+
+    public function printQal(string  $id)
+    {
+        $currentUser = $this->currentUser();
+        $dt = $id;
+        $id = explode(',', $dt)[0];
+        $id2 = explode(',', $dt)[1];
+
+        $query = $this->documents
+            ->select('document_versions.*, documents.*, u.name as owner_name, c.name as company_name, r.name as reviewer_name, a.name as approver_name, oa.name as owner_approval_name')
+            ->join('users u', 'u.id = documents.owner_id')
+            ->join('companies c', 'c.id = documents.companies_id', 'left')
+            ->join('users r', 'r.id = documents.reviewer_id', 'left')
+            ->join('users a', 'a.id = documents.approver_id', 'left')
+            ->join('users oa', 'oa.id = documents.owner_approval_id', 'left')
+            ->join('document_versions', 'document_versions.document_id = documents.id', 'left')
+            ->where('documents.created_at >=', $id)
+            ->where('documents.created_at <=', $id2)
+            ->orderBy('documents.created_at', 'DESC')->findAll();
+
+        $documentVersions = $this->documents
+            ->select('document_versions.*')
+            ->join('document_versions', 'document_versions.document_id = documents.id', 'left')
+            ->orderBy('documents.created_at', 'DESC');
+
+        return view('dc/printall', [
+            'currentUser' => $currentUser,
+            'document'    => $query,
+            'documentVersions' => $documentVersions->findAll(),
+        ]);
     }
 
     public function create()
@@ -391,6 +422,14 @@ class Documents extends BaseController
 
         $this->documents->update($id, ['status' => 'submitted']);
 
+        $this->reviews->insert([
+            'document_id' => $id,
+            'reviewer_id' => $currentUser['id'],
+            'status'      => 'submitted',
+            'comment'     => '',
+            'created_at'  => date('Y-m-d H:i:s'),
+        ]);
+
         $this->logActivity($currentUser['id'], 'submit_qal', ['document_id' => $id]);
 
         return redirect()->to(site_url('dc/' . $id))->with('success', 'Dokumen pendukung berhasil diserahkan ke Project Control.');
@@ -477,13 +516,13 @@ class Documents extends BaseController
             return redirect()->to(site_url('dc/' . $id))->with('error', 'Aksi review tidak valid.');
         }
 
-        $reviewStatus = $action === 'approve' ? 'review_approved' : 'revision_requested';
+        $reviewStatus = $action === 'approve' ? 'approved' : 'revision_requested';
         $docStatus = $action === 'approve' ? 'reviewed' : 'revision_requested';
 
         $this->reviews->insert([
             'document_id' => $id,
             'reviewer_id' => $currentUser['id'],
-            'status'      => $reviewStatus,
+            'status'      => 'reviewed',
             'comment'     => $comment,
             'created_at'  => date('Y-m-d H:i:s'),
         ]);
@@ -512,6 +551,15 @@ class Documents extends BaseController
 
         $this->documents->update($id, [
             'status' => 'pc_signed',
+            'approver_id' => $currentUser['id'],
+        ]);
+
+        $this->reviews->insert([
+            'document_id' => $id,
+            'reviewer_id' => $currentUser['id'],
+            'status'      => 'approved',
+            'comment'     => '',
+            'created_at'  => date('Y-m-d H:i:s'),
         ]);
 
         $this->logActivity($currentUser['id'], 'pc_sign_qal', ['document_id' => $id]);
@@ -537,6 +585,14 @@ class Documents extends BaseController
             'approved_by' => $currentUser['id'],
             'approved_at' => date('Y-m-d H:i:s'),
         ]);
+                $this->reviews->insert([
+            'document_id' => $id,
+            'reviewer_id' => $currentUser['id'],
+            'status'      => 'reviewed',
+            'comment'     => '',
+            'created_at'  => date('Y-m-d H:i:s'),
+        ]);
+
 
         $this->logActivity($currentUser['id'], 'owner_approve_qal', ['document_id' => $id]);
 
@@ -688,5 +744,74 @@ class Documents extends BaseController
 
         $this->hasVersionFileNameColumn = db_connect()->fieldExists('file_name', 'document_versions');
         return $this->hasVersionFileNameColumn;
+    }
+
+    public function reportQAL()
+    {
+        $currentUser = $this->currentUser();
+        $filterAwal = $this->request->getGet('start') . ' 00:00:00';
+        $filterAkhir = $this->request->getGet('end') . ' 23:59:59';
+        if (!$filterAwal || !$filterAkhir) {
+            $filterAwal = date('Y-m-01') . ' 00:00:00';
+            $filterAkhir = date('Y-m-t') . ' 23:59:59';
+        }
+        $statusFilter = 'archived';
+
+        $query = $this->documents
+            ->select('documents.*, u.name as owner_name, c.name as company_name, r.name as reviewer_name, a.name as approver_name, oa.name as owner_approval_name')
+            ->join('users u', 'u.id = documents.owner_id')
+            ->join('companies c', 'c.id = documents.companies_id', 'left')
+            ->join('users r', 'r.id = documents.reviewer_id', 'left')
+            ->join('users a', 'a.id = documents.approver_id', 'left')
+            ->join('users oa', 'oa.id = documents.owner_approval_id', 'left')
+            ->where('documents.created_at >=', $filterAwal)
+            ->where('documents.created_at <=', $filterAkhir)
+            ->orderBy('documents.created_at', 'DESC');
+
+        if ($this->hasRole($currentUser, 'owner')) {
+            $query->where('documents.companies_id', $currentUser['companies_id']);
+        }
+
+        if ($statusFilter) {
+            $query->where('documents.status', $statusFilter);
+        }
+
+        $docs = $query->findAll();
+
+        $statusCountsRaw = $this->documents
+            ->select('status, COUNT(*) as total')
+            ->groupBy('status');
+        if (!$this->hasRole($currentUser, 'construction')) {
+            $statusCountsRaw->where('documents.companies_id', $currentUser['companies_id']);
+        }
+
+        $statusCountsRaw = $statusCountsRaw->findAll();
+
+        $this->logActivity($currentUser['id'], 'view_dashboard', [
+            'status' => $statusFilter,
+        ]);
+
+        $statusCounts = [
+            'draft' => 0,
+            'submitted' => 0,
+            'reviewed' => 0,
+            'pc_signed' => 0,
+            'revision_requested' => 0,
+            'archived' => 0,
+        ];
+
+        foreach ($statusCountsRaw as $row) {
+            $statusCounts[$row['status']] = (int) $row['total'];
+        }
+
+        return view('dc/report-qal', [
+            'currentUser' => $currentUser,
+            'users'       => $this->users->findAll(),
+            'documents'   => $docs,
+            'filterAwal' => $filterAwal,
+            'filterAkhir' => $filterAkhir,
+            'statusFilter' => $statusFilter,
+            'statusCounts' => $statusCounts,
+        ]);
     }
 }

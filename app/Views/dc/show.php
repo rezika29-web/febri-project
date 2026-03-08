@@ -131,17 +131,6 @@ $jobHint = match ($normalizedRole) {
             </div>
         </form>
     <?php endif; ?><br />
-    <?php if ($canApprove): ?>
-        <form action="<?= site_url('dc/' . $document['id'] . '/review') ?>" method="post">
-            <div class="mb-3">
-                <label class="form-label">Catatan Review</label>
-                <textarea class="form-control" rows="3" name="comment"></textarea>
-            </div>
-            <div class="dc-actions">
-                <button class="btn btn-outline-danger" type="submit" name="action" value="revision">Minta Revisi ke Admin</button>
-            </div>
-        </form>
-    <?php endif; ?>
 </div>
 
 <div class="row g-4">
@@ -161,7 +150,7 @@ $jobHint = match ($normalizedRole) {
                                 <strong><?= esc(str_replace('_', ' ', strtoupper($r['status']))) ?></strong>
                                 <small class="text-muted"><?= esc($r['created_at']) ?></small>
                             </div>
-                            <div class="text-muted">QC: <?= esc($r['reviewer_name'] ?? $r['reviewer_id']) ?></div>
+                            <div class="text-muted"><?= esc($r['reviewer_name'] ?? $r['reviewer_id']) ?></div>
                             <div><?= esc($r['comment'] ?? '-') ?></div>
                         </li>
                     <?php endforeach; ?>

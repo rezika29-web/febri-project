@@ -54,35 +54,18 @@ $showQc = in_array($normalizedRole, ['admin', 'construction', 'pc', 'owner'], tr
 $showPc = in_array($normalizedRole, ['admin', 'construction', 'qc', 'owner'], true);
 $showOwner = in_array($normalizedRole, ['admin', 'construction', 'qc', 'pc'], true);
 ?>
-<div class="row g-3 mb-4">
-    <?php foreach ($statusCards as $card): ?>
-        <div class="col-md-3">
-            <div class="dc-card text-center">
-                <div class="text-muted"><?= esc($card['label']) ?></div>
-                <div class="h4 mb-0"><?= esc($statusCounts[$card['key']] ?? 0) ?></div>
-            </div>
-        </div>
-    <?php endforeach; ?>
-</div>
 
 <div class="dc-card">
+
     <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
-        <h2 class="h5 mb-0">Daftar QAL</h2>
+        <h2 class="h5 mb-0">Report QAL</h2>
         <div class="d-flex gap-2">
-            <form class="d-flex gap-2" method="get" action="<?= site_url('dc') ?>">
-                <select class="form-select" name="status">
-                    <option value="">Semua Status</option>
-                    <?php foreach ($statusFilterOptions as $st): ?>
-                        <option value="<?= $st ?>" <?= $statusFilter === $st ? 'selected' : '' ?>>
-                            <?= esc(str_replace('_', ' ', strtoupper($st))) ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
+            <form class="d-flex gap-2" method="get" action="<?= site_url('dc/report-qal') ?>">
+                <input type="date" id="start" name="start" required>
+                <input type="date" id="end" name="end" required>
                 <button class="btn btn-outline-secondary" type="submit">Filter</button>
             </form>
-            <?php if ($canCreate): ?>
-                <a class="btn btn-success" href="<?= site_url('dc/create') ?>">+ Buat QAL</a>
-            <?php endif; ?>
+            <a class="btn btn-outline-dark" href="<?= site_url('dc/' . $filterAwal . '/' . $filterAkhir . '/printQal') ?>" target="_blank">Print All</a>
         </div>
     </div>
 
@@ -96,7 +79,7 @@ $showOwner = in_array($normalizedRole, ['admin', 'construction', 'qc', 'pc'], tr
                         <th>No</th>
                         <th>Judul</th>
                         <th>Doc No</th>
-                        <!-- <th>Perusahaan</th> -->
+                        <th>Perusahaan</th>
                         <th>Status</th>
                         <?php if ($showConstruction): ?><th>Construction</th><?php endif; ?>
                         <?php if ($showPc): ?><th>PC</th><?php endif; ?>
@@ -110,6 +93,7 @@ $showOwner = in_array($normalizedRole, ['admin', 'construction', 'qc', 'pc'], tr
                             <td><?= esc($doc['id']) ?></td>
                             <td><?= esc($doc['title']) ?></td>
                             <td><?= esc($doc['doc_number']) ?></td>
+                            <td><?= esc($doc['company_name']) ?></td>
                             <td>
                                 <span class="dc-badge <?= esc($doc['status']) ?>">
                                     <?= esc(str_replace('_', ' ', strtoupper($doc['status']))) ?>

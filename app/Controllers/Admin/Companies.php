@@ -75,28 +75,33 @@ class Companies extends BaseController
     public function store()
     {
         $data = [
-            'name'     => $this->request->getPost('name')
+            'name'     => $this->request->getPost('name'),
+            'no_hp'     => $this->request->getPost('no_hp'),
+            'alamat'     => $this->request->getPost('alamat')
         ];
         $name = (string) $this->request->getPost('name');
         $exists = $this->companies->where('name', $name)->first();
         if ($exists) {
-            return redirect()->back()->withInput()->with('error', 'Nama perusahaan sudah digunakan.');
+            return redirect()->back()->withInput()->with('error', 'Nama User sudah digunakan.');
         }
 
         $this->companies->insert($data, true);
 
-        return redirect()->to(site_url('admin/companies'))->with('success', 'Perusahaan berhasil ditambahkan.');
+        return redirect()->to(site_url('admin/companies'))->with('success', 'User berhasil ditambahkan.');
     }
 
     public function edit(int $id)
     {
         $company = $this->companies->find($id);
+        $currentUser = $this->currentUser();
+
         if (!$company) {
-            return redirect()->to(site_url('company/index'))->with('error', 'Perusahaan tidak ditemukan.');
+            return redirect()->to(site_url('company/index'))->with('error', 'User tidak ditemukan.');
         }
 
         return view('company/edit', [
             'company'        => $company,
+            'currentUser' => $currentUser,
         ]);
     }
 
@@ -104,32 +109,34 @@ class Companies extends BaseController
     {
         $company = $this->companies->find($id);
         if (!$company) {
-            return redirect()->to(site_url('company/index'))->with('error', 'Perusahaan tidak ditemukan.');
+            return redirect()->to(site_url('company/index'))->with('error', 'User tidak ditemukan.');
         }
 
         $name = (string) $this->request->getPost('name');
         $exists = $this->companies->where('name', $name)->where('id !=', $id)->first();
         if ($exists) {
-            return redirect()->back()->withInput()->with('error', 'Nama perusahaan sudah digunakan.');
+            return redirect()->back()->withInput()->with('error', 'Nama User sudah digunakan.');
         }
 
         $data = [
             'name'  => $this->request->getPost('name'),
+            'no_hp'  => $this->request->getPost('no_hp'),
+            'alamat'  => $this->request->getPost('alamat'),
         ];
 
         $this->companies->update($id, $data);
-        return redirect()->to(site_url('company/index'))->with('success', 'Perusahaan berhasil diupdate.');
+        return redirect()->to(site_url('admin/companies'))->with('success', 'User berhasil diupdate.');
     }
 
     public function delete(int $id)
     {
         $company = $this->companies->find($id);
         if (!$company) {
-            return redirect()->to(site_url('admin/companies'))->with('error', 'Perusahaan tidak ditemukan.');
+            return redirect()->to(site_url('admin/companies'))->with('error', 'User tidak ditemukan.');
         }
 
         $this->companies->delete($id);
 
-        return redirect()->to(site_url('admin/companies'))->with('success', 'Perusahaan berhasil dihapus.');
+        return redirect()->to(site_url('admin/companies'))->with('success', 'User berhasil dihapus.');
     }
 }

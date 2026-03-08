@@ -8,7 +8,7 @@ class CompanyModel extends Model
 {
     protected $table = 'companies';
     protected $primaryKey = 'id';
-         protected $useSoftDeletes   = true;  
+    protected $useSoftDeletes   = true;  
     protected $deletedField     = 'deleted_at';
-    protected $allowedFields = ['name'];
+    protected $allowedFields = ['name', 'no_hp', 'alamat'];
 }

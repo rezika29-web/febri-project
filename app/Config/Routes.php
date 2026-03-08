@@ -12,12 +12,14 @@ $routes->get('logout', 'Auth::logout');
 
 $routes->group('dc', function ($routes) {
     $routes->get('/', 'Dc\\Documents::index');
+    $routes->get('report-qal', 'Dc\\Documents::reportQAL');
     $routes->get('profile', 'Dc\\Documents::profile');
     $routes->post('profile', 'Dc\\Documents::updateProfile');
     $routes->get('create', 'Dc\\Documents::create');
     $routes->post('store', 'Dc\\Documents::store');
     $routes->get('(:num)', 'Dc\\Documents::show/$1');
     $routes->get('(:num)/print', 'Dc\\Documents::print/$1');
+    $routes->get('(:any)/(:any)/printQal', 'Dc\\Documents::printQal/$1,$2');
     $routes->get('(:num)/edit', 'Dc\\Documents::edit/$1');
     $routes->post('(:num)/update', 'Dc\\Documents::update/$1');
     $routes->post('(:num)/delete', 'Dc\\Documents::delete/$1');
