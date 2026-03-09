@@ -53,9 +53,9 @@
             vertical-align: top;
         }
 
-        th {
+        /* th {
             background: #f2f2f2;
-        }
+        } */
 
         .no-border {
             border: 0 !important;
@@ -93,36 +93,23 @@
 
 <body>
     <button class="no-print print-btn" onclick="window.print()">Print</button>
-
-    <h1 class="text-center title">LAPORAN PENDATAAN DOKUMEN QAL<br />KONSORIUM PT.BRA_PT.BKP<br /><br />
-        <?php
-        foreach ($document as $dc) { ?>
-            <?= esc($dc['title']) ?></h1>
-    <table class="mt-8">
-        <tr>
-            <th style="width: 20%;">No QAL : <?= esc($dc['doc_number'] ?? '-') ?></th>
-            <th style="width: 30%;">Tanggal QAL : <?= esc($dc['created_at'] ?? '-') ?></th>
-            <th style="width: 50%;">Owner : <?= esc($dc['reviewer_name'] ?? '-') ?></th>
-        </tr>
-    </table>
-    <?php foreach ($documentVersions as $v): ?>
-        <?php if ($v['document_id'] == $dc['id']): ?>
-            <?php $img = base64_encode(
-                        file_get_contents(WRITEPATH . $v['file_path'])
-                    ); ?>
-            <div class="mt-12" style="justify-content: center; display: flex;">
-                <img src="data:image/jpeg;base64,<?= $img ?>" alt="" width="100%">
-            </div>
-        <?php endif; ?>
-    <?php endforeach; ?>
-
-    <div class="text-right mt-12 mr-12">
-        <p>Duri, <?= esc(date('d-m-Y')) ?></p>
-        <p>Administrator</p>
-        <p style=" margin-top: 50px;"><?= $dc['reviewer_name']; ?></p>
-    </div>
-    <div style="page-break-after: always;"></div>
-<?php  } ?>
+    <h1 class="text-center title">LAPORAN PENDATAAN DOKUMEN QAL<br />KONSORIUM PT.BRA_PT.BKP<br />
+    Bulan <?= $month; ?>
+        <table class="mt-8">
+            <tr style=" border-bottom: 3px solid black;">
+                <th style="width: 20%;">No QAL</th>
+                <th style="width: 30%;">Tanggal QAL</th>
+                <th style="width: 50%;">Owner</th>
+            </tr>
+            <?php
+            foreach ($document as $dc) { ?>
+                <tr>
+                    <th style="width: 20%;"><?= esc($dc['doc_number'] ?? '-') ?></th>
+                    <th style="width: 30%;"><?= esc($dc['approved_at'] ?? '-') ?></th>
+                    <th style="width: 50%;"><?= esc($dc['approver_name'] ?? '-') ?></th>
+                </tr>
+            <?php  } ?>
+        </table>
 
 </body>
 

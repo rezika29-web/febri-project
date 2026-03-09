@@ -39,13 +39,20 @@ $statusCards = match ($normalizedRole) {
     ],
 };
 
-$statusFilterOptions = match ($normalizedRole) {
-    'construction' => ['draft', 'submitted', 'revision_requested', 'archived'],
-    'qc' => ['submitted', 'reviewed', 'revision_requested', 'archived'],
-    'pc' => ['reviewed', 'pc_signed', 'archived'],
-    'owner' => ['pc_signed', 'archived'],
-    default => ['draft', 'submitted', 'reviewed', 'pc_signed', 'revision_requested', 'archived'],
-};
+$bulan = [
+    ['name' => 'January', 'number' => '01'],
+    ['name' => 'February', 'number' => '02'],
+    ['name' => 'March', 'number' => '03'],
+    ['name' => 'April', 'number' => '04'],
+    ['name' => 'May', 'number' => '05'],
+    ['name' => 'June', 'number' => '06'],
+    ['name' => 'July', 'number' => '07'],
+    ['name' => 'August', 'number' => '08'],
+    ['name' => 'September', 'number' => '09'],
+    ['name' => 'October', 'number' => '10'],
+    ['name' => 'November', 'number' => '11'],
+    ['name' => 'December', 'number' => '12']
+];
 
 $canCreate = in_array($normalizedRole, ['construction', 'admin'], true);
 
@@ -61,11 +68,18 @@ $showOwner = in_array($normalizedRole, ['admin', 'construction', 'qc', 'pc'], tr
         <h2 class="h5 mb-0">Report QAL</h2>
         <div class="d-flex gap-2">
             <form class="d-flex gap-2" method="get" action="<?= site_url('dc/report-qal') ?>">
-                <input type="date" id="start" name="start" required>
-                <input type="date" id="end" name="end" required>
+                <select class="form-select" name="month">
+                    <option value="">Bulan</option>
+                    <?php foreach ($bulan as $b): ?>
+                        <option value="<?= $b['number'] ?>" <?= ($month === $b['number']) ? 'selected' : '' ?>>
+                            <?= $b['name'] ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+
                 <button class="btn btn-outline-secondary" type="submit">Filter</button>
             </form>
-            <a class="btn btn-outline-dark" href="<?= site_url('dc/' . $filterAwal . '/' . $filterAkhir . '/printQal') ?>" target="_blank">Print All</a>
+            <a class="btn btn-outline-dark" href="<?= site_url('dc/' . $month . '/printQal') ?>" target="_blank">Print All</a>
         </div>
     </div>
 

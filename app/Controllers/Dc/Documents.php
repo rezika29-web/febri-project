@@ -183,32 +183,49 @@ class Documents extends BaseController
 
     public function printQal(string  $id)
     {
+        $month = '';
+        switch ($id) {
+            case '01': $month = 'January'; break;
+            case '02': $month = 'February'; break;
+            case '03': $month = 'Maret'; break;
+            case '04': $month = 'April'; break;
+            case '05': $month = 'Mei'; break;
+            case '06': $month = 'Juni'; break;
+            case '07': $month = 'July'; break;
+            case '08': $month = 'Agustus'; break;
+            case '09': $month = 'September'; break;
+            case '10': $month = 'Oktober'; break;
+            case '11': $month = 'November'; break;
+            case '12': $month = 'Desember'; break;
+            default: $month = '';
+        }
         $currentUser = $this->currentUser();
-        $dt = $id;
-        $id = explode(',', $dt)[0];
-        $id2 = explode(',', $dt)[1];
 
         $query = $this->documents
             ->select('document_versions.*, documents.*, u.name as owner_name, c.name as company_name, r.name as reviewer_name, a.name as approver_name, oa.name as owner_approval_name')
             ->join('users u', 'u.id = documents.owner_id')
             ->join('companies c', 'c.id = documents.companies_id', 'left')
             ->join('users r', 'r.id = documents.reviewer_id', 'left')
-            ->join('users a', 'a.id = documents.approver_id', 'left')
+            ->join('users a', 'a.id = documents.approved_by', 'left')
             ->join('users oa', 'oa.id = documents.owner_approval_id', 'left')
             ->join('document_versions', 'document_versions.document_id = documents.id', 'left')
-            ->where('documents.created_at >=', $id)
-            ->where('documents.created_at <=', $id2)
+            ->where('DATE_FORMAT(approved_at, "%m")', $id)
             ->orderBy('documents.created_at', 'DESC')->findAll();
 
-        $documentVersions = $this->documents
-            ->select('document_versions.*')
-            ->join('document_versions', 'document_versions.document_id = documents.id', 'left')
-            ->orderBy('documents.created_at', 'DESC');
+        // ->where('documents.created_at >=', $id)
+        // ->where('documents.created_at <=', $id2)            
+
+        // $documentVersions = $this->documents
+        //     ->select('document_versions.*')
+        //     ->join('document_versions', 'document_versions.document_id = documents.id', 'left')
+        //     ->orderBy('documents.created_at', 'DESC');
+
 
         return view('dc/printall', [
             'currentUser' => $currentUser,
             'document'    => $query,
-            'documentVersions' => $documentVersions->findAll(),
+            'month' => $month,
+            // 'documentVersions' => $documentVersions->findAll(),
         ]);
     }
 
@@ -585,7 +602,7 @@ class Documents extends BaseController
             'approved_by' => $currentUser['id'],
             'approved_at' => date('Y-m-d H:i:s'),
         ]);
-                $this->reviews->insert([
+        $this->reviews->insert([
             'document_id' => $id,
             'reviewer_id' => $currentUser['id'],
             'status'      => 'approved',
@@ -749,12 +766,7 @@ class Documents extends BaseController
     public function reportQAL()
     {
         $currentUser = $this->currentUser();
-        $filterAwal = $this->request->getGet('start') . ' 00:00:00';
-        $filterAkhir = $this->request->getGet('end') . ' 23:59:59';
-        if (!$filterAwal || !$filterAkhir) {
-            $filterAwal = date('Y-m-01') . ' 00:00:00';
-            $filterAkhir = date('Y-m-t') . ' 23:59:59';
-        }
+        $filterMonth = $this->request->getGet('month');
         $statusFilter = 'archived';
 
         $query = $this->documents
@@ -764,9 +776,11 @@ class Documents extends BaseController
             ->join('users r', 'r.id = documents.reviewer_id', 'left')
             ->join('users a', 'a.id = documents.approver_id', 'left')
             ->join('users oa', 'oa.id = documents.owner_approval_id', 'left')
-            ->where('documents.created_at >=', $filterAwal)
-            ->where('documents.created_at <=', $filterAkhir)
+            ->where('DATE_FORMAT(approved_at, "%m")', $filterMonth)
+
             ->orderBy('documents.created_at', 'DESC');
+        // ->where('documents.created_at >=', $filterMonth)
+        // ->where('documents.created_at <=', $filterAkhir)
 
         if ($this->hasRole($currentUser, 'owner')) {
             $query->where('documents.companies_id', $currentUser['companies_id']);
@@ -808,8 +822,7 @@ class Documents extends BaseController
             'currentUser' => $currentUser,
             'users'       => $this->users->findAll(),
             'documents'   => $docs,
-            'filterAwal' => $filterAwal,
-            'filterAkhir' => $filterAkhir,
+            'month' => $filterMonth,
             'statusFilter' => $statusFilter,
             'statusCounts' => $statusCounts,
         ]);
