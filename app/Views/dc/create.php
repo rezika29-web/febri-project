@@ -13,15 +13,6 @@
                 <label class="form-label">Nomor Dokumen</label>
                 <input class="form-control" name="doc_number" required>
             </div>
-            <!-- <div class="col-md-6">
-                <label class="form-label">Perusahaan</label>
-                <select class="form-select" name="company_id">
-                    <option value="">- Pilih Perusahaan -</option>
-                    <?php foreach ($comp as $c): ?>
-                        <option value="<?= $c['id'] ?>"><?= esc($c['name']) ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div> -->
             <div class="col-md-6">
                 <label class="form-label">File Draft (opsional, bisa lebih dari 1)</label>
                 <input class="form-control" type="file" name="files[]" id="draftFilesInput" multiple>

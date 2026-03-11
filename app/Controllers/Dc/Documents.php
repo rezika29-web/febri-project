@@ -299,7 +299,7 @@ class Documents extends BaseController
             'reviewer_id' => $this->request->getPost('reviewer_id') ?: null,
             'approver_id' => $this->request->getPost('approver_id') ?: null,
             'owner_approval_id' => $this->request->getPost('owner_approval_id') ?: null,
-            'companies_id' => $this->request->getPost('company_id') ?: null,
+            'companies_id' => null,
             'status'      => 'draft',
         ];
 
@@ -378,7 +378,7 @@ class Documents extends BaseController
         if (!$this->canEdit($doc, $currentUser)) {
             return redirect()->to(site_url('dc/' . $id))->with('error', 'Anda tidak punya akses untuk edit dokumen ini.');
         }
-
+        
         $data = [
             'title'       => $this->request->getPost('title'),
             'doc_number'  => $this->request->getPost('doc_number'),
@@ -770,12 +770,8 @@ class Documents extends BaseController
         $statusFilter = 'archived';
 
         $query = $this->documents
-            ->select('documents.*, u.name as owner_name, c.name as company_name, r.name as reviewer_name, a.name as approver_name, oa.name as owner_approval_name')
-            ->join('users u', 'u.id = documents.owner_id')
-            ->join('companies c', 'c.id = documents.companies_id', 'left')
-            ->join('users r', 'r.id = documents.reviewer_id', 'left')
-            ->join('users a', 'a.id = documents.approver_id', 'left')
-            ->join('users oa', 'oa.id = documents.owner_approval_id', 'left')
+            ->select('documents.*,a.name as approver_name')
+            ->join('users a', 'a.id = documents.approved_by', 'left')
             ->where('DATE_FORMAT(approved_at, "%m")', $filterMonth)
 
             ->orderBy('documents.created_at', 'DESC');

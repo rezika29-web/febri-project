@@ -93,11 +93,8 @@ $showOwner = in_array($normalizedRole, ['admin', 'construction', 'qc', 'pc'], tr
                         <th>No</th>
                         <th>Judul</th>
                         <th>Doc No</th>
-                        <th>Perusahaan</th>
+                        <th>User</th>
                         <th>Status</th>
-                        <?php if ($showConstruction): ?><th>Construction</th><?php endif; ?>
-                        <?php if ($showPc): ?><th>PC</th><?php endif; ?>
-                        <?php if ($showOwner): ?><th>Owner</th><?php endif; ?>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -107,15 +104,12 @@ $showOwner = in_array($normalizedRole, ['admin', 'construction', 'qc', 'pc'], tr
                             <td><?= esc($doc['id']) ?></td>
                             <td><?= esc($doc['title']) ?></td>
                             <td><?= esc($doc['doc_number']) ?></td>
-                            <td><?= esc($doc['company_name']) ?></td>
+                            <td><?= esc($doc['approver_name']) ?></td>
                             <td>
                                 <span class="dc-badge <?= esc($doc['status']) ?>">
                                     <?= esc(str_replace('_', ' ', strtoupper($doc['status']))) ?>
                                 </span>
                             </td>
-                            <?php if ($showConstruction): ?><td><?= esc($doc['owner_name']) ?></td><?php endif; ?>
-                            <?php if ($showPc): ?><td><?= esc($doc['approver_name'] ?? '-') ?></td><?php endif; ?>
-                            <?php if ($showOwner): ?><td><?= esc($doc['owner_approval_name'] ?? '-') ?></td><?php endif; ?>
                             <td>
                                 <div class="dc-actions">
                                     <a class="btn btn-sm btn-outline-primary" href="<?= site_url('dc/' . $doc['id']) ?>">Detail</a>
