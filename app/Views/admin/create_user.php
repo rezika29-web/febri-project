@@ -22,9 +22,9 @@
                 </select>
             </div>
             <div class="col-md-6">
-                <label class="form-label">Perusahaan</label>
+                <label class="form-label">User</label>
                 <select class="form-select" name="company_id">
-                    <option value="">- Pilih Perusahaan -</option>
+                    <option value="">- Pilih User -</option>
                     <?php foreach ($comp as $c): ?>
                         <option value="<?= $c['id'] ?>"><?= esc($c['name']) ?></option>
                     <?php endforeach; ?>

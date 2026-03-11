@@ -17,7 +17,7 @@
     ];
     ?>
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2 class="h5 mb-0">Manajemen User</h2>
+        <h2 class="h5 mb-0">Manajemen Akun User</h2>
         <?php if (!empty($canCreateUser)): ?>
             <a class="btn btn-success" href="<?= site_url('admin/users/create') ?>">+ Tambah Akun User</a>
         <?php endif; ?>
